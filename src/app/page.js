@@ -17,7 +17,7 @@ export default function Home() {
     setItems(data.data);
   }
 
-  async function handleCreateOrUpdate(form) {
+  async function CreateOrUpdate(form) {
     if (editingItem) {
       await fetch(`/api/items/${editingItem._id}`, {
         method: 'PUT',
@@ -39,22 +39,23 @@ export default function Home() {
     fetchItems();
   }
 
-  async function handleDelete(id) {
+  async function Delete(id) {
     await fetch(`/api/items/${id}`, {
       method: 'DELETE',
     });
     fetchItems();
+    alert("Are you sure to delete this item?")
   }
 
-  function handleEdit(item) {
+  function Edit(item) {
     setEditingItem(item);
   }
 
   return (
     <div className="container mx-auto p-8">
       <h1 className="text-2xl font-bold mb-6">CRUD App</h1>
-      <ItemForm onSubmit={handleCreateOrUpdate} initialData={editingItem} />
-      <ItemList items={items} onDelete={handleDelete} onEdit={handleEdit} />
+      <ItemForm onSubmit={CreateOrUpdate} initialData={editingItem} />
+      <ItemList items={items} onDelete={Delete} onEdit={Edit} />
     </div>
   );
 }

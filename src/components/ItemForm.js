@@ -10,21 +10,21 @@ export default function ItemForm({ onSubmit, initialData }) {
     }
   }, [initialData]);
 
-  function handleChange(e) {
+  function ChangeData(e) {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   }
 
-  function handleSubmit(e) {
+  function SubmitForm(e) {
     e.preventDefault();
     onSubmit(form);
     setForm({ name: '', description: '' });
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6">
+    <form onSubmit={SubmitForm} className="mb-6">
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
           Name
@@ -34,7 +34,7 @@ export default function ItemForm({ onSubmit, initialData }) {
           name="name"
           id="name"
           value={form.name}
-          onChange={handleChange}
+          onChange={ChangeData}
           placeholder="eg: Task 1"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           required
@@ -49,7 +49,7 @@ export default function ItemForm({ onSubmit, initialData }) {
           name="description"
           id="description"
           value={form.description}
-          onChange={handleChange}
+          onChange={ChangeData}
           placeholder="eg: This is the description of Task 1"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           required
